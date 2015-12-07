@@ -1,4 +1,13 @@
 #!/bin/sh
+# 
+# to use:
+# . include/fun
+
+# 
+thisExec=`basename $0`
+thisProc="${thisExec}[$$]"
+thisHost="`hostname | head -1 | cut -d\. -f1`"
+
 
 # Show arbit message like a logger would.
 yo(){ echo "`date` `hostname` $@";}
@@ -37,4 +46,8 @@ wait_for_file() {
     done
 }
 
+
+thisExec=`basename $0`
+thisProc="${thisExec}[$$]"
+thisHost="`hostname | head -1 | cut -d\. -f1`"
 
