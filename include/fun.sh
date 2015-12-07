@@ -46,8 +46,3 @@ wait_for_file() {
     done
 }
 
-
-thisExec=`basename $0`
-thisProc="${thisExec}[$$]"
-thisHost="`hostname | head -1 | cut -d\. -f1`"
-
