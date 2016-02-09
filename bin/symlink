@@ -1,0 +1,34 @@
+#!/bin/sh
+# I've always thought the native arg order for symlinks was backwards...
+
+usage() {
+  echo "Usage:"
+  echo "    $0 [-f] symlink_name target"
+  echo ""
+  echo "Example:"
+  echo "    symlink name_of_new_symlink /path/to/existing/file"
+  exit $1
+}
+
+# Allow 2 or 3 arguments only.
+test $# -eq 2 -o $# -eq 3 || usage 1
+
+# If there are 3 args and first arg is -f, then force symlink creation
+test $# -eq 3 && {
+  if [ "$1" = "-f" ]; then
+    force='f'
+    shift
+  else
+    # Otherwise 3 args is invalid
+    usage 2
+  fi
+}
+
+# If target does not exist and user did not ask to force symlink creation
+test ! -e $2 -a -z "$force" && {
+  echo "Target ${2} does not exist!"
+  exit 3
+}
+
+# Do the symlink
+ln -s${force}v $2 $1
