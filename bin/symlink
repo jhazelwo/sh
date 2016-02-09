@@ -3,10 +3,10 @@
 
 usage() {
   echo "Usage:"
-  echo "    $0 [-f] symlink_name target"
+  echo "    `basename $0` [-f] symlink_name target"
   echo ""
   echo "Example:"
-  echo "    symlink name_of_new_symlink /path/to/existing/file"
+  echo "    $0 ./name_of_new_symlink /path/to/existing/file"
   exit $1
 }
 
