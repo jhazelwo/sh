@@ -13,20 +13,17 @@ usage() {
 # Allow 2 or 3 arguments only.
 test $# -eq 2 -o $# -eq 3 || usage 1
 
-# If there are 3 args and first arg is -f, then force symlink creation
-test $# -eq 3 && {
-  if [ "$1" = "-f" ]; then
+# If there are 3 arguments and $1 is NOT '-f' then fail.
+test $# -eq 3 -a "$1" != "-f" && usage 2
+
+# If there are 3 arguments and $1 IS '-f' set force.
+test $# -eq 3 -a "$1" = "-f" && {
     force='f'
     shift
-  else
-    # Otherwise 3 args is invalid
-    usage 2
-  fi
 }
 
-# If target does not exist and user did not ask to force symlink creation
 test ! -e $2 -a -z "$force" && {
-  echo "Target ${2} does not exist!"
+  echo "Target '${2}' does not exist! Use -f to force."
   exit 3
 }
 
