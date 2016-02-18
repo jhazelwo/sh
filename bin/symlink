@@ -18,8 +18,8 @@ test $# -eq 3 -a "$1" != "-f" && usage 2
 
 # If there are 3 arguments and $1 IS '-f' set force.
 test $# -eq 3 -a "$1" = "-f" && {
-    force='f'
-    shift
+  force='f'
+  shift
 }
 
 test ! -e $2 -a -z "$force" && {
