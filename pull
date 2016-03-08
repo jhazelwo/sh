@@ -1,4 +1,6 @@
-#!/bin/sh -ex
+#!/bin/sh
+set -e
+set -x
 gittemp=`mktemp -d`
 git clone --depth=1 https://github.com/jhazelwo/sh.git $gittemp
 install -v -m 0700 -d bin
