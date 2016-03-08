@@ -1,7 +1,8 @@
-#!/bin/sh
-T=`mktemp -d`
-git clone --depth=1 https://github.com/jhazelwo/sh.git $T
-mkdir -vp bin lib
-cp -v ${T}/bin/* bin/
-cp -v ${T}/lib/* lib/
-rm -rf $T
+#!/bin/sh -e
+gittemp=`mktemp -d`
+git clone --depth=1 https://github.com/jhazelwo/sh.git $gittemp
+install -v -m 0700 -d bin
+for this in `ls $gittemp/bin`; do /usr/bin/install -v -m 0700 $gittemp/bin/$this bin/ ; done
+install -v -m 0700 -d lib
+for this in `ls $gittemp/lib`; do /usr/bin/install -v -m 0700 $gittemp/lib/$this lib/ ; done
+rm -rf $gittemp
