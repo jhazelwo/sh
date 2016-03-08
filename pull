@@ -1,0 +1,7 @@
+#!/bin/sh
+T=`mktemp -d`
+git clone --depth=1 https://github.com/jhazelwo/sh.git $T
+mkdir -vp bin lib
+cp -v ${T}/bin/* bin/
+cp -v ${T}/lib/* lib/
+rm -rf $T
