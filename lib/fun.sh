@@ -46,3 +46,15 @@ wait_for_file() {
     done
 }
 
+# Ask yes/no to confirm a script should continue.
+isok(){
+  while true; do
+    read -p "Continue?" yn
+    case $yn in
+      [Yy]* ) break;;
+      [Nn]* ) exit;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
