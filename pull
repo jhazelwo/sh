@@ -1,10 +1,13 @@
 #!/bin/sh
 set -e
 set -x
-gittemp=`mktemp -d`
-git clone --depth=1 https://github.com/jhazelwo/sh.git $gittemp
-install -v -m 0700 -d bin
-install -v -m 0700 $gittemp/bin/* bin/
-install -v -m 0700 -d lib
-install -v -m 0700 $gittemp/lib/* lib/
-rm -rf $gittemp
+please() {
+  gittemp=`mktemp -d`
+  git clone --depth=1 https://github.com/jhazelwo/sh.git $gittemp
+  install -v -m 0700 -d bin
+  install -v -m 0700 $gittemp/bin/* bin/
+  install -v -m 0700 -d lib
+  install -v -m 0700 $gittemp/lib/* lib/
+  rm -rf $gittemp
+}
+please and thanks
