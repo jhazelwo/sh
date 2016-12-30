@@ -57,7 +57,5 @@ if [ "${NAME}" -a "${FILE}" -a "${ACTION}" ]; then
 else
    exit 2
 fi
-
 #If all else fails (or doesn't fail as expected) then
 exit 1
-

@@ -21,4 +21,3 @@ while [ $index -gt 1 ]; do
 done
 #Display the process tree from init to $1:
 ps -o uid,pid,ppid,etime,stime,tty,cmd -p "${list}" --forest
-
