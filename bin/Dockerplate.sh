@@ -50,7 +50,7 @@ do_build() {
     echo "build \$1"
     docker build \$build_rm --tag=\${image_name} \$build_context
     [ \$? -eq 0 -a please_\$1 = please_clean ] && {
-        for this in `/usr/bin/docker images |grep '<none>'|awk '{print \$3}'`; do
+        for this in \`/usr/bin/docker images |grep '<none>'|awk '{print \$3}'\`; do
             /usr/bin/docker rmi \$this
         done
     }
