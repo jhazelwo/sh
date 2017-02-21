@@ -27,16 +27,19 @@ DOCKERFILE
 install -v -m 0740 /dev/null container.sh
 cat << CONTAINER > container.sh
 #!/bin/sh
-image_name="jhazelwo/example:0.1"
 contname="example"
+image_name="jhazelwo/\${contname}:0.1"
 nodename="--hostname=\${contname}"
 runname="--name=\${contname}"
 run_rm="--rm=true"
+# run_rm="--detach"
 build_rm="--force-rm=true"
 # volumes="-v /home/human:/home/human"
 with_tty="--tty"
 with_interact="--interactive"
 build_context=\$(dirname \$0)
+ports="-p 2222:22"  # Outside:Inside
+# startre="--restart=unless-stopped"
 
 usage() {
     echo ""
@@ -57,7 +60,7 @@ do_build() {
 }
 
 do_run() {
-    docker run \$nodename \$runname \$run_rm \$ports \$volumes \$with_tty \$with_interact \$image_name \$@
+    docker run \$nodename \$runname \$run_rm \$ports \$volumes \$with_tty \$with_interact \$startre \$image_name \$@
 }
 
 do_kill() {
