@@ -9,5 +9,11 @@ please() {
   install -v -m 0700 -d lib
   install -v -m 0700 $gittemp/lib/* lib/
   rm -rf $gittemp
+  install -v -m 0700 /dev/null bin/netshow
 }
-please and thanks
+
+thanks() {
+  curl -s https://raw.githubusercontent.com/jhazelwo/python-netshow/master/netshow/netshow.py > bin/netshow
+}
+
+please && thanks
